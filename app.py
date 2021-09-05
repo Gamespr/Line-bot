@@ -50,7 +50,7 @@ def handle_message(event):
     elif re.match('選單', msg):
         template_btnmsg = TemplateSendMessage(      #選單按鈕最多4個
             alt_text='此為選單介紹,看不到',  # 此介紹給開發者看的,使用者看不到
-            tempplate=ButtonsTemplate(
+            template=ButtonsTemplate(
                 thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg',
                 title='此為標題',
                 text='選單功能 - TemplateSendMessage',
