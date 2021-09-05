@@ -71,6 +71,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, template_btnmsg)
     elif re.match('多重選單', msg):
         carousel_template_msg = TemplateSendMessage(
             alt_text='介紹部分',
@@ -124,6 +125,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, carousel_template_msg)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='這是重複訊息 ' + msg))
 
