@@ -93,7 +93,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(  # 按鈕數量最多三個
-                        thumbnail_image_url='hhttps://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg',
+                        thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg',
                         title='標題部分',
                         text='小簡介',
                         actions=[
