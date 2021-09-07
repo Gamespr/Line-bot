@@ -10,6 +10,8 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+from mongodb_function import *
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -18,7 +20,7 @@ line_bot_api = LineBotApi(
 # Channel Secret
 handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 # Channel ID & push message
-line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試用指令:\n圖片\n選單\n多重選單'))
+line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試用指令:\n圖片\n選單\n多重選單\n@對話紀錄'))
 
 
 # 監聽所有來自 /callback 的 Post Request
@@ -126,6 +128,39 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_msg)
+
+    # MongoDB操作
+    elif '@讀取' in msg:
+        datas = read_many_datas()
+        datas_len = len(datas)
+        message = TextSendMessage(text=f'資料數量，一共{datas_len}條')
+        line_bot_api.reply_message(event.reply_token, message)
+
+    elif '@查詢' in msg:
+        datas = col_find('events')
+        message = TextSendMessage(text=str(datas))
+        line_bot_api.reply_message(event.reply_token, message)
+
+    elif '@對話紀錄' in msg:
+        datas = read_chat_records()
+        print(type(datas))
+        n = 0
+        text_list = []
+        for data in datas:
+            if '@' in data:
+                continue
+            else:
+                text_list.append(data)
+            n += 1
+        data_text = '\n'.join(text_list)
+        message = TextSendMessage(text=data_text[:5000])
+        line_bot_api.reply_message(event.reply_token, message)
+
+    elif '@刪除' in msg:
+        text = delete_all_data()
+        message = TextSendMessage(text=text)
+        line_bot_api.reply_message(event.reply_token, message)
+
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='這是重複訊息 ' + msg))
 
