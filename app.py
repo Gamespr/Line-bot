@@ -30,6 +30,8 @@ def callback():
     signature = request.headers['X-Line-Signature']
     # get request body as text
     body = request.get_data(as_text=True)
+    # load data
+    write_one_data(eval(body))
     app.logger.info("Request body: " + body)
     # handle webhook body
     try:
