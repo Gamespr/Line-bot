@@ -81,12 +81,12 @@ def handle_message(event):
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(         #按鈕數量最多三個
-                        thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883613032935198722/image0.jpg',
-                        title='標題部分',
+                        thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797146627448922/619ab7f32f5268df.jpg',
+                        title='冰箱',
                         text='小簡介',
                         actions=[
                             MessageAction(
-                                label='練習內容',
+                                label='冰箱內容物',
                                 text='line bot 多重選單'
                             ),
                             URIAction(
@@ -96,12 +96,12 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(  # 按鈕數量最多三個
-                        thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg',
-                        title='標題部分',
+                        thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797166533640232/6e7bbf4683a4be20.jpg',
+                        title='食材',
                         text='小簡介',
                         actions=[
                             MessageAction(
-                                label='練習內容',
+                                label='食材也效期限',
                                 text='line bot 多重選單'
                             ),
                             URIAction(
@@ -111,12 +111,12 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(  # 按鈕數量最多三個
-                        thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883985965897633822/image0.jpg',
-                        title='標題部分',
+                        thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797292161425418/5a9fd9b80ffab85a.jpg',
+                        title='蔬菜水果',
                         text='小簡介',
                         actions=[
                             MessageAction(
-                                label='練習內容',
+                                label='水果項目',
                                 text='line bot 多重選單'
                             ),
                             URIAction(
