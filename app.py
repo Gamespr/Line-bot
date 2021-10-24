@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 # test
 
-t=time.localtime()
+t=str(time.localtime())
 
 # Channel Access Token
 line_bot_api = LineBotApi('YQJ26AsjvoDBTkuqYbP6281pZAH9r4t/cug2ksK4kzlKr3A8q6IqpqlMCzedNCnc7H7MXMKsMFJD4zneB28tcxmnPyr349Qzcure6uMZ1kToizonoFKqt2Xo4kul/K5yv+tHMIOVjgwNF4vt31P1wAdB04t89/1O/w1cDnyilFU=')
