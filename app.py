@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 # test
 
-localtime=str(time.localtime())
+localtime=time.localtime()
 result_time=time.strftime("%Y-%m-%d %I:%M:%S %p", localtime)
 
 # Channel Access Token
