@@ -43,9 +43,11 @@ def wake_up():
 
 threading.Thread(target=wake_up()).start()
 
+#============================================
 
-
-
+@app.route("/heroku_wake_up")
+def heroku_wake_up():
+    return "Heroku Wake Up!"
 
 
 # 監聽所有來自 /callback 的 Post Request
