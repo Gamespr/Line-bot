@@ -15,7 +15,6 @@ from linebot.models import *
 
 from mongodb_function import *
 
-from schedule import *
 
 app = Flask(__name__)
 
