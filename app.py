@@ -1,5 +1,7 @@
 import re
 
+from flask import render_template
+
 import threading
 import time
 import requests
@@ -49,6 +51,9 @@ handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 # def heroku_wake_up():
 #     return "Heroku Wake Up!"
 
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
