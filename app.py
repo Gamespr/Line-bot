@@ -34,7 +34,7 @@ handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 def wake_up():
     while 1==1:
         url = 'https://testmessaging.herokuapp.com/' + 'heroku_wake_up'
-        res = request.get(url)
+        res = requests.get(url)
         if res.status_code==200:
             print('成功喚醒')
         else:
