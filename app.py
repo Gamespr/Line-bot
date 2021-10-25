@@ -17,8 +17,7 @@ from mongodb_function import *
 
 app = Flask(__name__)
 
-# test
-
+# time test
 localtime=time.localtime()
 result_time=time.strftime("%Y-%m-%d %I:%M:%S %p", localtime)
 
