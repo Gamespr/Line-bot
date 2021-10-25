@@ -39,7 +39,7 @@ def wake_up():
             print('成功喚醒')
         else:
             print('喚醒失敗')
-        time.sleep(28*60)
+        time.sleep(10)
 
 threading.Thread(target=wake_up()).start()
 
