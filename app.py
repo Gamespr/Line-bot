@@ -31,23 +31,23 @@ handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 # line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='現在時間是: '+ result_time + '\n測試用指令:\n圖片\n選單\n多重選單\n@對話紀錄'))
 
 #heroku wake up
-def wake_up():
-    while 1==1:
-        url = 'https://testmessaging.herokuapp.com/' + 'heroku_wake_up'
-        res = requests.get(url)
-        if res.status_code==200:
-            print('成功喚醒')
-        else:
-            print('喚醒失敗')
-        time.sleep(60)
-
-threading.Thread(target=wake_up()).start()
+# def wake_up():
+#     while 1==1:
+#         url = 'https://testmessaging.herokuapp.com/' + 'heroku_wake_up'
+#         res = requests.get(url)
+#         if res.status_code==200:
+#             print('成功喚醒')
+#         else:
+#             print('喚醒失敗')
+#         time.sleep(60)
+#
+# threading.Thread(target=wake_up()).start()
 
 #============================================
 
-@app.route("/heroku_wake_up")
-def heroku_wake_up():
-    return "Heroku Wake Up!"
+# @app.route("/heroku_wake_up")
+# def heroku_wake_up():
+#     return "Heroku Wake Up!"
 
 
 # 監聽所有來自 /callback 的 Post Request
