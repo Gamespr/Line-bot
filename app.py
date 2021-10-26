@@ -63,6 +63,7 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     print(body)
+    print(eval(body))
     print(eval(body)['events'][0]['message']['text'])
     # load data
     write_one_data(eval(body))
