@@ -1,7 +1,6 @@
 import pymongo
 
-#要獲得mongodb網址，請至mongodb網站申請帳號進行資料庫建立，網址　https://www.mongodb.com/
-#取的網址方法之範例如圖： https://i.imgur.com/HLCk99r.png
+
 client = pymongo.MongoClient("mongodb+srv://Eddie:Eddie29888788@cluster0.4rjpi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 #第一個db的建立
