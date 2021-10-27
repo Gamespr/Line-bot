@@ -2,7 +2,6 @@ import re
 
 from flask import render_template
 
-import threading
 import time
 import requests
 
