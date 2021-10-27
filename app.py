@@ -30,7 +30,7 @@ line_bot_api = LineBotApi('YQJ26AsjvoDBTkuqYbP6281pZAH9r4t/cug2ksK4kzlKr3A8q6Iqp
 handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 # Channel ID & push message
 # line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='現在時間是: '+ result_time + '\n測試用指令:\n圖片\n選單\n多重選單\n@對話紀錄'))
-line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='您所存放的雞肉已於今日2021/09/09到期!'))
+line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試!'))
 
 #heroku wake up
 # def wake_up():
@@ -54,6 +54,10 @@ line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text=
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/arduino_test")
+def home():
+    line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試成功!'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
