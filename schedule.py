@@ -13,7 +13,7 @@ def timed_job():
     line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試成功!'))
 
 
-@sched.scheduled_job('cron', minute='*/28')
+@sched.scheduled_job('cron', minute='*/25')
 def scheduled_job():
     url = "https://testmessaging.herokuapp.com/"
     res = requests.get(url)
