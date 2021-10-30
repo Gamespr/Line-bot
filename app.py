@@ -30,7 +30,7 @@ line_bot_api = LineBotApi('YQJ26AsjvoDBTkuqYbP6281pZAH9r4t/cug2ksK4kzlKr3A8q6Iqp
 handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 # Channel ID & push message
 # line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='現在時間是: '+ result_time + '\n測試用指令:\n圖片\n選單\n多重選單\n@對話紀錄'))
-line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試!'))
+# line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試!'))
 
 #heroku wake up
 # def wake_up():
@@ -73,6 +73,7 @@ def callback():
     print(eval(body))
     print(eval(body)['events'][0]['message']['text'])
     print(type(eval(body)['events'][0]['message']['text']))
+    date_alarm()
     # load data
     write_one_data(eval(body))
     app.logger.info("Request body: " + body)
@@ -206,6 +207,9 @@ def handle_message(event):
 
     elif re.match('\d\d\d\d-\d\d-\d\d', msg):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄一筆資料!'))
+
+
+
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='這是重複訊息 ' + msg))
 

@@ -91,4 +91,8 @@ def date_alarm():
                     if date_check[0] == d:
                         food_list.append(date_check[1])
 
-    return food_list
+    food_text = '\n'.join(food_list)
+
+    print(food_text)
+
+    return food_text
