@@ -60,10 +60,7 @@ def test():
     line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='測試成功!'))
     return 'success!'
 
-@app.route("/heroku_wake_up")
-def test():
-    print('success!')
-    return 'success!'
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])

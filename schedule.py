@@ -15,7 +15,7 @@ def timed_job():
 
 @sched.scheduled_job('cron', minute='*/25')
 def scheduled_job():
-    url = "https://testmessaging.herokuapp.com/" + "heroku_wake_up"
+    url = "https://testmessaging.herokuapp.com/"
     res = requests.get(url)
 
     if res.status_code == 200:
