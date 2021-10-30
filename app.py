@@ -73,7 +73,9 @@ def callback():
     print(eval(body))
     print(eval(body)['events'][0]['message']['text'])
     print(type(eval(body)['events'][0]['message']['text']))
+    print('=========date alarm========')
     date_alarm()
+    print('=========date alarm========')
     # load data
     write_one_data(eval(body))
     app.logger.info("Request body: " + body)
