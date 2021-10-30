@@ -204,7 +204,7 @@ def handle_message(event):
         message = TextSendMessage(text=text)
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif re.match('\d\d\d\d/\d\d/\d\d', msg):
+    elif re.match('\d\d\d\d-\d\d-\d\d', msg):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄一筆資料!'))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='這是重複訊息 ' + msg))
