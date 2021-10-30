@@ -1,4 +1,5 @@
 import pymongo
+import datetime
 
 
 client = pymongo.MongoClient("mongodb+srv://Eddie:Eddie29888788@cluster0.4rjpi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -74,3 +75,20 @@ def col_find(key):
             break
     print(data)
     return data
+
+
+def date_alarm():
+
+    d=str(datetime.date.today())
+    food_list=[]
+
+    for data in col.find():
+        if dicMemberCheck('events',data):
+            if dicMemberCheck('message',data['events'][0]):
+                if dicMemberCheck('text',data['events'][0]['message']):
+                    date=data['events'][0]['message']['text']
+                    date_check=date.split(' ')
+                    if date_check[0] == d:
+                        food_list.append(date_check[1])
+
+    return food_list

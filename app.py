@@ -72,6 +72,7 @@ def callback():
     print(body)
     print(eval(body))
     print(eval(body)['events'][0]['message']['text'])
+    print(type(eval(body)['events'][0]['message']['text']))
     # load data
     write_one_data(eval(body))
     app.logger.info("Request body: " + body)
