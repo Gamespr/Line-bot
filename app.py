@@ -196,7 +196,7 @@ def handle_message(event):
         for data in datas:
             if '@' in data:
                 continue
-            else:
+            elif re.match('\d\d\d\d-\d\d-\d\d', data):
                 text_list.append(data)
         data_text = '\n'.join(text_list)
         message = TextSendMessage(text=data_text[:5000])
