@@ -77,6 +77,7 @@ def col_find(key):
     return data
 
 
+#對比日期
 def date_alarm():
 
     d=str(datetime.date.today())
