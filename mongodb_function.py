@@ -97,20 +97,3 @@ def date_alarm():
     print(food_text[:5000])
 
     return food_text
-
-# #日期排序
-# def date_sort():
-#
-#     data_list = []
-#     for data in col.find():
-#         if dicMemberCheck('events',data):
-#             if dicMemberCheck('message',data['events'][0]):
-#                 if dicMemberCheck('text',data['events'][0]['message']):
-#                     if re.match('\d\d\d\d-\d\d-\d\d', data['events'][0]['message']['text']):
-#
-#                     data_list.append(data['events'][0]['message']['text'])
-#         else:
-#             print('非LINE訊息',data)
-#
-#     print(data_list)
-#     return data_list
