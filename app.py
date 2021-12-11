@@ -57,9 +57,9 @@ def home():
 
 @app.route("/arduino_test", methods=['GET', 'POST'])
 def test():
-    line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='偵測到食品有腐壞的跡象，請處理腐壞的相關食品'))
     v = request.values['input_value']
     v1 = request.values['input_value1']
+    line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66',TextMessage(text='偵測到食品有腐壞的跡象，請處理腐壞的相關食品!\n參數:' + v + ',' + v1))
     return 'values={},{}'.format(v, v1)
 
 
