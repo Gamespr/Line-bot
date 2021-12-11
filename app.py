@@ -55,10 +55,10 @@ handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 def home():
     return render_template("index.html")
 
-@app.route("/arduino_test")
+@app.route("/arduino_test", methods=['GET', 'POST'])
 def test():
     line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='偵測到食品有腐壞的跡象，請處理腐壞的相關食品'))
-    return 'success!'
+    return request.values['input_value']
 
 
 
