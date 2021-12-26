@@ -75,7 +75,7 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     print(type(body))
-    print(type(eval(body)))
+    print(type(json.loads(body)))
     print(eval(body)['events'][0]['message']['text'])
     print(type(eval(body)['events'][0]['message']['text']))
     # load data
