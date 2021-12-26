@@ -116,7 +116,7 @@ def handle_message(event):
                     ),
                     MessageAction(
                         label='查看保存食品',
-                        text='@食品資訊'
+                        text='@已保存食品資訊'
                     ),
                     MessageAction(
                         label='光明正大傳資料',
@@ -194,7 +194,7 @@ def handle_message(event):
         message = TextSendMessage(text=str(datas))
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif msg == '@食品資訊':
+    elif msg == '@已保存食品資訊':
         datas = read_chat_records()
         print(type(datas))
         text_list = []
