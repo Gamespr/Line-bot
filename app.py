@@ -110,19 +110,18 @@ def handle_message(event):
                 title='此為標題',
                 text='選單功能 - TemplateSendMessage',
                 actions=[
-                    PostbackAction(
-                        label='偷偷傳資料',
-                        display_text='檯面上',
-                        data='action=檯面下' #這行才是真的傳送資料
+                    MessageAction(
+                        label='保存食品',
+                        text='保存食品'
+                    ),
+                    MessageAction(
+                        label='查看保存食品',
+                        text='@食品資訊'
                     ),
                     MessageAction(
                         label='光明正大傳資料',
                         text='這就是資料'
                     ),
-                    URIAction(
-                        label='網址連結',
-                        uri='https://www.youtube.com/watch?v=CJ0Xqx5Wu4M'
-                    )
                 ]
             )
         )
@@ -181,7 +180,8 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_msg)
-
+    elif msg == '保存食品':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品資訊，\n例如:2020-01-05 鮮奶'))
     # MongoDB操作
     elif msg == '@讀取':
         datas = read_many_datas()
@@ -194,7 +194,7 @@ def handle_message(event):
         message = TextSendMessage(text=str(datas))
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif msg == '@食品有效期限':
+    elif msg == '@食品資訊':
         datas = read_chat_records()
         print(type(datas))
         text_list = []
@@ -214,12 +214,12 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     elif re.match('\d\d\d\d-\d\d-\d\d \w', msg):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄一筆資料!'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄食品資訊!'))
 
 
 
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='這是重複訊息 ' + msg))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='以上發送的訊息無法執行有效的指令，請重新發送正確的訊息'))
 
 
 
