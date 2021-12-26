@@ -64,8 +64,8 @@ def test():
 
 @app.route("/img_post", methods=['POST'])
 def post():
-    r = requests.get('https://testmessaging.herokuapp.com/img_post')
-    return r.text
+
+    return 'success!'
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -96,13 +96,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    if re.match('圖片', msg):
+    if msg == '圖片':
         image_message = ImageSendMessage(
             original_content_url='https://cdn.discordapp.com/attachments/756823911768916019/883613032935198722/image0.jpg',
             preview_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg'
         )
         line_bot_api.reply_message(event.reply_token, image_message)
-    elif re.match('選單', msg):
+    elif msg == '選單':
         template_btnmsg = TemplateSendMessage(      #選單按鈕最多4個
             alt_text='此為選單介紹,看不到',  # 此介紹給開發者看的,使用者看不到
             template=ButtonsTemplate(
@@ -127,7 +127,7 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, template_btnmsg)
-    elif re.match('多重選單', msg):
+    elif msg == '多重選單':
         carousel_template_msg = TemplateSendMessage(
             alt_text='介紹部分',
             template=CarouselTemplate(
@@ -183,18 +183,18 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_msg)
 
     # MongoDB操作
-    elif '@讀取' in msg:
+    elif msg == '@讀取':
         datas = read_many_datas()
         datas_len = len(datas)
         message = TextSendMessage(text=f'資料數量，一共{datas_len}條')
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif '@查詢' in msg:
+    elif msg == '查詢':
         datas = col_find('events')
         message = TextSendMessage(text=str(datas))
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif '@食品有效期限' in msg:
+    elif msg == '@食品有效期限':
         datas = read_chat_records()
         print(type(datas))
         text_list = []
