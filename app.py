@@ -1,5 +1,5 @@
 import re
-
+import json
 from flask import render_template
 
 import time
@@ -74,8 +74,8 @@ def callback():
     signature = request.headers['X-Line-Signature']
     # get request body as text
     body = request.get_data(as_text=True)
-    print(body)
-    print(eval(body))
+    print(type(body))
+    print(type(eval(body)))
     print(eval(body)['events'][0]['message']['text'])
     print(type(eval(body)['events'][0]['message']['text']))
     # load data
@@ -208,7 +208,7 @@ def handle_message(event):
         message = TextSendMessage(text=data_text[:5000])
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif '@刪除' in msg:
+    elif msg == '@刪除':
         text = delete_all_data()
         message = TextSendMessage(text=text)
         line_bot_api.reply_message(event.reply_token, message)
