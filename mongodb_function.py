@@ -84,13 +84,10 @@ def date_alarm():
     food_list=[]
 
     for data in col.find():
-        if dicMemberCheck('events',data):
-            if dicMemberCheck('message',data['events'][0]):
-                if dicMemberCheck('text',data['events'][0]['message']):
-                    date=data['events'][0]['message']['text']
-                    date_check=date.split(' ')
-                    if date_check[0] == d:
-                        food_list.append(date_check[1])
+        date=data['events'][0]['message']['text']
+        date_check=date.split(' ')
+        if date_check[0] == d:
+            food_list.append(date_check[1])
 
     food_text = '\n'.join(food_list)
 

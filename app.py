@@ -74,6 +74,7 @@ def callback():
     signature = request.headers['X-Line-Signature']
     # get request body as text
     body = request.get_data(as_text=True)
+    print(json.loads(body))
     print(type(body))
     print(type(json.loads(body)))
     print(json.loads(body)['events'][0]['message']['text'])
