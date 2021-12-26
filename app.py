@@ -76,10 +76,10 @@ def callback():
     body = request.get_data(as_text=True)
     print(type(body))
     print(type(json.loads(body)))
-    print(eval(body)['events'][0]['message']['text'])
-    print(type(eval(body)['events'][0]['message']['text']))
+    print(json.loads(body)['events'][0]['message']['text'])
+    print(type(json.loads(body)['events'][0]['message']['text']))
     # load data
-    write_one_data(eval(body))
+    write_one_data(json.loads(body))
     print('=========date alarm========')
     date_alarm()
     print('=========date alarm========')
