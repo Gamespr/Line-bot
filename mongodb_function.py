@@ -1,4 +1,5 @@
 import pymongo
+import re
 import datetime
 
 
@@ -22,7 +23,11 @@ def dicMemberCheck(key, dicObj):
 
 #寫入資料data是dictionary
 def write_one_data(data):
-    col.insert_one(data)
+    if dicMemberCheck('events', data):
+        if dicMemberCheck('message', data['events'][0]):
+            if dicMemberCheck('text', data['events'][0]['message']):
+                if re.match('\d\d\d\d-\d\d-\d\d \w\w', data['events'][0]['message']['text']):
+                    col.insert_one(data)
 
 #寫入多筆資料，data是一個由dictionary組成的list
 def write_many_datas(data):
