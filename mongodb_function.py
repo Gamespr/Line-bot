@@ -46,13 +46,8 @@ def read_many_datas():
 def read_chat_records():
     data_list = []
     for data in col.find():
-        if dicMemberCheck('events',data):
-            if dicMemberCheck('message',data['events'][0]):
-                if dicMemberCheck('text',data['events'][0]['message']):
-                    print(data['events'][0]['message']['text'])
-                    data_list.append(data['events'][0]['message']['text'])
-        else:
-            print('非LINE訊息',data)
+        print(data['events'][0]['message']['text'])
+        data_list.append(data['events'][0]['message']['text'])
 
     print(data_list)
     return data_list
