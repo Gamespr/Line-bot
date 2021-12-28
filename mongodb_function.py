@@ -103,7 +103,8 @@ def delete_one_data(msg):
             data_list.append(data['events'][0]['message']['text'])
             col.delete_one(data)
 
-
+    print(data_list)
+    
     if len(data_list)!=0:
         return data_list
     else:
