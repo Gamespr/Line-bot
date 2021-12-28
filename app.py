@@ -182,9 +182,9 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_msg)
     elif msg == '保存食品':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品資訊，\n例如:2020-01-05 鮮奶'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品資訊。\n例如:2020-01-05 鮮奶'))
     elif msg == '處理食品':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='若以處理完指定的食品請依照格式以刪除食品資訊，\n例如:已處理2020-01-05 鮮奶'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='若已處理完指定的食品請依照格式以刪除食品資訊。\n例如:已處理2020-01-05 鮮奶'))
     # MongoDB操作
     elif msg == '@讀取':
         datas = read_many_datas()
@@ -211,10 +211,12 @@ def handle_message(event):
         message = TextSendMessage(text=text)
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif re.match('已處理\d\d\d\d-\d\d-\d\d', msg):
+    elif re.match('已處理\d\d\d\d-\d\d-\d\d \w', msg):
         deletion = delete_one_data(msg)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion + '已成功刪除資訊!'))
-
+        if len(deletion) != 0:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion + '已成功刪除資訊!'))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion + '，請檢查輸入的訊息是否有誤!'))
 
     elif re.match('\d\d\d\d-\d\d-\d\d \w', msg):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄食品資訊!'))
