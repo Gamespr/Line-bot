@@ -100,7 +100,7 @@ def delete_one_data(msg):
     data_list = []
     for data in col.find():
         if msg[3:] == data['events'][0]['message']['text']:
-            data_list.append(data['events'][0]['message']['text'])
+            data_list.append(msg[3:])
             col.delete_one(data)
 
     print(data_list)
