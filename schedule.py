@@ -9,7 +9,7 @@ import requests
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute=20)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute=30)
 def timed_job():
     date = date_alarm()
     adv_date = date_adv()
