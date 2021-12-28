@@ -14,7 +14,7 @@ def timed_job():
     date = date_alarm()
     adv_date = date_adv()
     d = str(datetime.date.today())
-    d1 = str(d + datetime.timedelta(days=2))
+    d1 = str(today + datetime.timedelta(days=2))
     if len(adv_date) != 0:
         line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66',TextMessage(text='您所存放的\n' + date + '\n再過2日於' + d1 + '到期!'))
     if len(date) !=0:
