@@ -91,7 +91,6 @@ def date_alarm():
 
     food_text = '\n'.join(food_list)
 
-    print(food_text[:5000])
 
     return food_text
 
