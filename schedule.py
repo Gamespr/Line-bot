@@ -16,7 +16,7 @@ def timed_job():
     d = str(datetime.date.today())
     d1 = str(datetime.date.today() + datetime.timedelta(days=3))
     if len(adv_date) != 0:
-        line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66',TextMessage(text='您所存放的\n' + adv_date + '\n再過2日於' + d1 + '到期!'))
+        line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66',TextMessage(text='您所存放的\n' + adv_date + '\n再過3日於' + d1 + '到期!'))
     if len(date) != 0:
         line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='您所存放的\n' + date + '\n已於今日' + d + '到期!\n請處理完食品後，於選單中點選處理食品，輸入已處理完的食品資訊'))
 
