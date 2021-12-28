@@ -99,9 +99,8 @@ def date_alarm():
 def delete_one_data(msg):
     data_list = []
     for data in col.find():
-        date = data['events'][0]['message']['text']
-        if msg[3:] == date:
-            data_list.append(date)
+        if msg[3:] == data['events'][0]['message']['text']:
+            data_list.append(data['events'][0]['message']['text'])
             col.delete_one(data)
 
 
