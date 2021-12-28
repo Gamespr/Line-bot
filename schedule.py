@@ -9,7 +9,7 @@ import requests
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute=30)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute=35)
 def timed_job():
     date = date_alarm()
     adv_date = date_adv()
@@ -18,7 +18,7 @@ def timed_job():
     if len(adv_date) != 0:
         line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66',TextMessage(text='您所存放的\n' + date + '\n再過2日於' + d1 + '到期!'))
     if len(date) !=0:
-        line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='您所存放的\n' + date + '\n已於今日' + d + '到期!'))
+        line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='您所存放的\n' + date + '\n已於今日' + d + '到期!\n請處理完食品後，於選單點選處理食品輸入已處理完的食品資訊'))
 
 
 

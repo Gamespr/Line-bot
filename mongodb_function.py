@@ -112,7 +112,7 @@ def delete_one_data(msg):
 #提前提醒日期
 def date_adv():
 
-    d=str(today + datetime.timedelta(days=2))
+    d=str(datetime.date.today() + datetime.timedelta(days=2))
     food_list=[]
 
     for data in col.find():
