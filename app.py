@@ -213,10 +213,7 @@ def handle_message(event):
 
     elif re.match('已處理\d\d\d\d-\d\d-\d\d \w', msg):
         deletion = delete_one_data(msg)
-        if len(deletion) != 0:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion + '已成功刪除!'))
-        else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion + '，請檢查輸入的訊息是否有誤!'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion))
 
     elif re.match('\d\d\d\d-\d\d-\d\d \w', msg):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄食品資訊!'))
