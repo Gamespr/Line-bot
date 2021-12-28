@@ -113,15 +113,16 @@ def delete_one_data(msg):
 def date_adv():
 
     d=str(datetime.date.today() + datetime.timedelta(days=2))
-    food_list=[]
+    adv_list=[]
 
     for data in col.find():
         date=data['events'][0]['message']['text']
         date_check=date.split(' ')
         if date_check[0] == d:
-            food_list.append(date_check[1])
+            adv_list.append(date_check[1])
 
-    food_text = '\n'.join(food_list)
+    adv_text = '\n'.join(adv_list)
 
+    print(adv_text)
 
-    return food_text
+    return adv_text

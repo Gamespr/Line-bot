@@ -63,7 +63,7 @@ def callback():
     # load data
     write_one_data(json.loads(body))
     print('=========date alarm========')
-    date_alarm()
+    date_adv()
     print('=========date alarm========')
     app.logger.info("Request body: " + body)
     # handle webhook body
