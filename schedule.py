@@ -9,7 +9,7 @@ import requests
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=17, minute=37)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=8, minute=37)
 def timed_job():
     date = date_alarm()
     d = str(datetime.date.today())
@@ -18,15 +18,15 @@ def timed_job():
 
 
 
-# @sched.scheduled_job('cron', minute='*/25')
-# def scheduled_job():
-#     url = "https://testmessaging.herokuapp.com/"
-#     res = requests.get(url)
-#
-#     if res.status_code == 200:
-#         print('喚醒成功')
-#     else:
-#         print('喚醒失敗')
+@sched.scheduled_job('cron', minute='*/25')
+def scheduled_job():
+    url = "https://testmessaging.herokuapp.com/"
+    res = requests.get(url)
+
+    if res.status_code == 200:
+        print('喚醒成功')
+    else:
+        print('喚醒失敗')
 
 
 sched.start()
