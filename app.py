@@ -117,11 +117,11 @@ def handle_message(event):
                     ),
                     MessageAction(
                         label='查看保存食品',
-                        text='@已保存食品資訊'
+                        text='已保存食品資訊'
                     ),
                     MessageAction(
-                        label='光明正大傳資料',
-                        text='這就是資料'
+                        label='處理食品',
+                        text='處理食品'
                     ),
                 ]
             )
@@ -183,36 +183,38 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_msg)
     elif msg == '保存食品':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品資訊，\n例如:2020-01-05 鮮奶'))
+    elif msg == '處理食品':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='若以處理完指定的食品請依照格式以刪除食品資訊，\n例如:已處理2020-01-05 鮮奶'))
     # MongoDB操作
     elif msg == '@讀取':
         datas = read_many_datas()
         datas_len = len(datas)
-        message = TextSendMessage(text=f'資料數量，一共{datas_len}條')
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'資料數量，一共{datas_len}條'))
 
     elif msg == '查詢':
         datas = col_find('events')
-        message = TextSendMessage(text=str(datas))
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(datas)))
 
-    elif msg == '@已保存食品資訊':
+    elif msg == '已保存食品資訊':
         datas = read_chat_records()
         print(type(datas))
         text_list = []
         for data in datas:
-            if '@' in data:
-                continue
-            elif re.match('\d\d\d\d-\d\d-\d\d', data):
+            if re.match('\d\d\d\d-\d\d-\d\d', data):
                 text_list.append(data)
         text_list.sort()
         data_text = '\n'.join(text_list)
-        message = TextSendMessage(text=data_text[:5000])
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=data_text))
 
     elif msg == '@刪除':
         text = delete_all_data()
         message = TextSendMessage(text=text)
         line_bot_api.reply_message(event.reply_token, message)
+
+    elif re.match('已處理\d\d\d\d-\d\d-\d\d', msg):
+        deletion = delete_one_data(msg)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion + '已成功刪除資訊!'))
+
 
     elif re.match('\d\d\d\d-\d\d-\d\d \w', msg):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄食品資訊!'))

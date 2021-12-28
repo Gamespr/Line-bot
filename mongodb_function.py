@@ -94,3 +94,18 @@ def date_alarm():
     print(food_text[:5000])
 
     return food_text
+
+# 刪除指定食品資訊
+def delete_one_data(msg):
+    data_list = []
+    for data in col.find():
+        date = data['events'][0]['message']['text']
+        if msg[3:] == date:
+            data_list.append(date)
+            col.delete_one(data)
+
+
+    if len(data_list)!=0:
+        return data_list
+    else:
+        return "資料錯誤"
