@@ -108,3 +108,20 @@ def delete_one_data(msg):
         return data_list[0] + " 已成功刪除!"
     else:
         return "資料錯誤，請檢查輸入的訊息是否有誤!"
+
+#提前提醒日期
+def date_adv():
+
+    d=str(today + datetime.timedelta(days=2))
+    food_list=[]
+
+    for data in col.find():
+        date=data['events'][0]['message']['text']
+        date_check=date.split(' ')
+        if date_check[0] == d:
+            food_list.append(date_check[1])
+
+    food_text = '\n'.join(food_list)
+
+
+    return food_text

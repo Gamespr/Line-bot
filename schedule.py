@@ -9,10 +9,14 @@ import requests
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute=0)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute=18)
 def timed_job():
     date = date_alarm()
+    adv_date = date_adv()
     d = str(datetime.date.today())
+    d1 = str(d + datetime.timedelta(days=2))
+    if len(adv_date) != 0:
+        line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66',TextMessage(text='您所存放的\n' + date + '\n再過2日於' + d1 + '到期!'))
     if len(date) !=0:
         line_bot_api.push_message('U4ee7f6b303c39a750a7638d340149b66', TextMessage(text='您所存放的\n' + date + '\n已於今日' + d + '到期!'))
 
