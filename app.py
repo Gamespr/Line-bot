@@ -182,7 +182,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_msg)
     elif msg == '保存食品':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品資訊。\n例如:2020-01-05 鮮奶'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品到期資訊。\n例如:2020-01-05 鮮奶'))
     elif msg == '處理食品':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='若已處理完指定的食品請依照格式以刪除食品資訊。\n例如:已處理2020-01-05 鮮奶'))
     # MongoDB操作
