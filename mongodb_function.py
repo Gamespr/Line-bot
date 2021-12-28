@@ -106,6 +106,6 @@ def delete_one_data(msg):
     print(data_list)
 
     if len(data_list)!=0:
-        return data_list + "已成功刪除!"
+        return f"{data_list}已成功刪除!"
     else:
         return "資料錯誤，請檢查輸入的訊息是否有誤!"
