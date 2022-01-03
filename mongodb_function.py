@@ -21,7 +21,7 @@ def dicMemberCheck(key, dicObj):
     else:
         return False
 
-#寫入資料data是dictionary
+#寫入資料 data是dictionary
 def write_one_data(data):
     if dicMemberCheck('events', data):
         if dicMemberCheck('message', data['events'][0]):
@@ -67,15 +67,6 @@ def delete_all_data():
     else:
         return "資料刪除出錯"
 
-#找到最新的一筆資料
-def col_find(key):
-    for data in col.find({}).sort('_id',-1):
-        if dicMemberCheck(key,data):
-            data = data[key]
-            break
-    print(data)
-    return data
-
 
 #對比日期
 def date_alarm():
@@ -90,7 +81,6 @@ def date_alarm():
             food_list.append(date_check[1])
 
     food_text = '\n'.join(food_list)
-
 
     return food_text
 
