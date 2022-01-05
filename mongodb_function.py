@@ -125,7 +125,7 @@ def date_check(msg):
     for data in col.find():
         inf = data['events'][0]['message']['text']
         split = inf.split(' ')
-        if msg[2:] == split[0]:
+        if msg == split[0]:
             ck_date.append(split[1])
 
     ful_date='\n'.join(ck_date)
