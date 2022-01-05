@@ -153,8 +153,8 @@ def handle_message(event):
 
     elif re.match('查看\d\d\d\d-\d\d-\d\d',msg):
         ck = date_check(msg[2:])
-        if ck != 0:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的' + msg[2:] + '到期的食品資續如下:\n' + ck ))
+        if ck > 1:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的' + msg[2:] + '到期的食品資續如下:\n\n' + ck ))
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的日期資訊有誤，請重新檢查是否有此日期之資訊!'))
 
