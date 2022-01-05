@@ -22,15 +22,15 @@ def timed_job():
 
 
 
-# @sched.scheduled_job('cron', minute='*/25')
-# def scheduled_job():
-#     url = "https://testmessaging.herokuapp.com/"
-#     res = requests.get(url)
-#
-#     if res.status_code == 200:
-#         print('喚醒成功')
-#     else:
-#         print('喚醒失敗')
+@sched.scheduled_job('cron', minute='*/25')
+def scheduled_job():
+    url = "https://testmessaging.herokuapp.com/"
+    res = requests.get(url)
+
+    if res.status_code == 200:
+        print('喚醒成功')
+    else:
+        print('喚醒失敗')
 
 
 sched.start()

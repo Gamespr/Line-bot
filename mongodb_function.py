@@ -42,7 +42,7 @@ def read_many_datas():
     print(data_list)
     return data_list
 
-# #讀取LINE的對話紀錄資料
+# 讀取LINE的對話紀錄資料
 def read_chat_records():
     data_list = []
     for data in col.find():
@@ -52,20 +52,20 @@ def read_chat_records():
     print(data_list)
     return data_list
 
-#刪除所有資料
-def delete_all_data():
-    data_list = []
-    for x in col.find():
-        data_list.append(x)   
-
-    datas_len = len(data_list)
-
-    col.delete_many({})
-
-    if len(data_list)!=0:
-        return f"資料刪除完畢，共{datas_len}筆"
-    else:
-        return "資料刪除出錯"
+# #刪除所有資料
+# def delete_all_data():
+#     data_list = []
+#     for x in col.find():
+#         data_list.append(x)
+#
+#     datas_len = len(data_list)
+#
+#     col.delete_many({})
+#
+#     if len(data_list)!=0:
+#         return f"資料刪除完畢，共{datas_len}筆"
+#     else:
+#         return "資料刪除出錯"
 
 
 #對比日期
@@ -116,3 +116,20 @@ def date_adv():
     print(adv_text)
 
     return adv_text
+
+# 查看指定日期資訊
+def date_check(msg):
+
+    ck_date=[]
+
+    for data in col.find():
+        inf = data['events'][0]['message']['text']
+        split = date.split(' ')
+        food = split[1]
+        date = split[0]
+        if msg[2:] == date:
+            ck_date.append(food)
+
+    ful_date='\n'.join(ck_date)
+
+    return ful_date

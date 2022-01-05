@@ -90,8 +90,8 @@ def handle_message(event):
             alt_text='此為選單介紹,看不到',  # 此介紹給開發者看的,使用者看不到
             template=ButtonsTemplate(
                 thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg',
-                title='此為標題',
-                text='選單功能 - TemplateSendMessage',
+                title='指令選單',
+                text='點選下方按鈕以了解使用方式',
                 actions=[
                     MessageAction(
                         label='保存食品',
@@ -105,70 +105,14 @@ def handle_message(event):
                         label='處理食品',
                         text='處理食品'
                     ),
-                    DatetimePickerAction(
-                        label='詳細日期選擇',
-                        data = 'date_postback',
-                        mode= 'date'
+                    MessageAction(
+                        label='查詢指定日期資訊',
+                        text='查詢指定日期資訊'
                     )
                 ]
             )
         )
         line_bot_api.reply_message(event.reply_token, template_btnmsg)
-
-    elif msg == '多重選單':
-        carousel_template_msg = TemplateSendMessage(
-            alt_text='介紹部分',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(         #按鈕數量最多三個
-                        thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797146627448922/619ab7f32f5268df.jpg',
-                        title='冰箱',
-                        text='小簡介',
-                        actions=[
-                            MessageAction(
-                                label='冰箱內容物',
-                                text='line bot 多重選單'
-                            ),
-                            URIAction(
-                                label='網址連結',
-                                uri='https://www.youtube.com/watch?v=CJ0Xqx5Wu4M'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(  # 按鈕數量最多三個
-                        thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797166533640232/6e7bbf4683a4be20.jpg',
-                        title='食材',
-                        text='小簡介',
-                        actions=[
-                            MessageAction(
-                                label='食材有效期限',
-                                text='line bot 多重選單'
-                            ),
-                            URIAction(
-                                label='網址連結',
-                                uri='https://www.youtube.com/watch?v=y4_R2OYZWUc'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(  # 按鈕數量最多三個
-                        thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797292161425418/5a9fd9b80ffab85a.jpg',
-                        title='蔬菜水果',
-                        text='小簡介',
-                        actions=[
-                            MessageAction(
-                                label='水果項目',
-                                text='line bot 多重選單'
-                            ),
-                            URIAction(
-                                label='網址連結',
-                                uri='https://www.youtube.com/watch?v=Ab8hOwRKXu0'
-                            )
-                        ]
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, carousel_template_msg)
 
     elif msg == '保存食品':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品到期資訊。\n例如:2020-01-05 鮮奶'))
@@ -179,18 +123,17 @@ def handle_message(event):
     elif msg == '更多資訊':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='此機器人為了有效方便管理食品，只接收與指令有關的訊息，相關功能可點擊指令清單圖示以了解使用方式。\n另外食品到期前三日以及到期日，會主動提醒並且呈現食品資訊'))
 
-    elif re.match('已處理\d\d\d\d-\d\d-\d\d \w', msg):
-        deletion = delete_one_data(msg)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion))
+    elif msg == '查詢詳細日期資訊':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以查看指定到期日之資訊。\n例如:查看2020-01-05'))
 
     elif re.match('\d\d\d\d-\d\d-\d\d \w', msg):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功紀錄食品資訊!'))
 
     # MongoDB操作
-    elif msg == '@讀取':
-        datas = read_many_datas()
-        datas_len = len(datas)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'資料數量，一共{datas_len}條'))
+    # elif msg == '@讀取':
+    #     datas = read_many_datas()
+    #     datas_len = len(datas)
+    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'資料數量，一共{datas_len}條'))
 
 
     elif msg == '已保存食品資訊':
@@ -202,12 +145,23 @@ def handle_message(event):
                 text_list.append(data)
         text_list.sort()
         data_text = '\n'.join(text_list)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='以下為您目前所存放的食品到期資訊:\n' + data_text + '\n\n想指定特定日期的話'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='以下為您目前所存放的食品到期資訊:\n' + data_text + '\n\n想查詢指定到期日的話，可於指令選單中點選查詢指定日期資訊'))
 
-    elif msg == '@刪除':
-        text = delete_all_data()
-        message = TextSendMessage(text=text)
-        line_bot_api.reply_message(event.reply_token, message)
+    elif re.match('已處理\d\d\d\d-\d\d-\d\d \w', msg):
+        deletion = delete_one_data(msg)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletion))
+
+    elif re.match('查看\d\d\d\d-\d\d-\d\d',msg):
+        ck = date_check(msg)
+        if ck != 0:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的' + msg[2:] + '到期的食品資續如下:\n' + ck ))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的日期資訊有誤，請重新檢查是否有此日期之資訊!'))
+
+    # elif msg == '@刪除':
+    #     text = delete_all_data()
+    #     message = TextSendMessage(text=text)
+    #     line_bot_api.reply_message(event.reply_token, message)
 
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='以上發送的訊息無法執行有效的指令，請重新發送正確的訊息'))
