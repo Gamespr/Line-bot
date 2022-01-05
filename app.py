@@ -123,7 +123,7 @@ def handle_message(event):
     elif msg == '更多資訊':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='此機器人為了有效方便管理食品，只接收與指令有關的訊息，相關功能可點擊指令清單圖示以了解使用方式。\n另外食品到期前三日以及到期日，會主動提醒並且呈現食品資訊'))
 
-    elif msg == '查詢詳細日期資訊':
+    elif msg == '查詢指定日期資訊':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以查看指定到期日之資訊。\n例如:查看2020-01-05'))
 
     elif re.match('\d\d\d\d-\d\d-\d\d \w', msg):
