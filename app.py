@@ -78,14 +78,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    if msg == '圖片':
-        image_message = ImageSendMessage(
-            original_content_url='https://cdn.discordapp.com/attachments/756823911768916019/883613032935198722/image0.jpg',
-            preview_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, image_message)
 
-    elif msg == '選單':
+    if msg == '選單':
         template_btnmsg = TemplateSendMessage(      #選單按鈕最多4個
             alt_text='此為選單介紹,看不到',  # 此介紹給開發者看的,使用者看不到
             template=ButtonsTemplate(
@@ -113,6 +107,7 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, template_btnmsg)
+
 
     elif msg == '保存食品':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請依照格式以記錄食品到期資訊。\n例如:2020-01-05 鮮奶'))
@@ -145,7 +140,10 @@ def handle_message(event):
                 text_list.append(data)
         text_list.sort()
         data_text = '\n'.join(text_list)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='以下為您目前所存放的食品到期資訊:\n' + data_text + '\n\n想查詢指定到期日的話，可於指令選單中點選查詢指定日期資訊'))
+        if len(data_text) != 0:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='以下為您目前所存放的食品到期資訊:\n' + data_text + '\n\n想查詢指定到期日的話，可於指令選單中點選查詢指定日期資訊'))
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='目前沒有存放的食品!'))
 
     elif re.match('已處理\d\d\d\d-\d\d-\d\d \w', msg):
         deletion = delete_one_data(msg)
@@ -154,7 +152,7 @@ def handle_message(event):
     elif re.match('查看\d\d\d\d-\d\d-\d\d',msg):
         ck = date_check(msg[2:])
         if len(ck) != 0:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的' + msg[2:] + '到期的食品資續如下:\n\n' + ck ))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的' + msg[2:] + '到期的食品資訊如下:\n\n' + ck ))
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您所查詢的日期資訊有誤，請重新檢查是否有此日期之資訊!'))
 
