@@ -46,7 +46,6 @@ def test():
 
 @app.route("/yolo", methods=['GET'])
 def post():
-    time.sleep(60*5)
     line_bot_api.push_message('U443cbb5edf2e94e8ba23a767cf41f260', TextMessage(text='辨識到食品腐壞的影像，請處理腐壞的相關食品!'))
     return 'success!'
 
