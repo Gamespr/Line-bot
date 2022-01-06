@@ -84,7 +84,7 @@ def handle_message(event):
         template_btnmsg = TemplateSendMessage(      #選單按鈕最多4個
             alt_text='此為選單介紹,看不到',  # 此介紹給開發者看的,使用者看不到
             template=ButtonsTemplate(
-                thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797146627448922/619ab7f32f5268df.jpg',
+                thumbnail_image_url='https://www.csd.org.tw/upload/article/369/img/40ed657baf50e1e9a843979b9cca4aa1.jpg',
                 title='指令選單',
                 text='點選下方按鈕以了解使用方式',
                 actions=[
