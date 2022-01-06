@@ -44,9 +44,9 @@ def test():
     # return 'values={},{}'.format(v, v1)
     return 'success'
 
-@app.route("/img_post", methods=['POST'])
+@app.route("/yolo", methods=['GET'])
 def post():
-
+    line_bot_api.push_message('U443cbb5edf2e94e8ba23a767cf41f260', TextMessage(text='辨識到食品腐壞的影像，請處理腐壞的相關食品!'))
     return 'success!'
 
 # 監聽所有來自 /callback 的 Post Request
@@ -84,7 +84,7 @@ def handle_message(event):
         template_btnmsg = TemplateSendMessage(      #選單按鈕最多4個
             alt_text='此為選單介紹,看不到',  # 此介紹給開發者看的,使用者看不到
             template=ButtonsTemplate(
-                thumbnail_image_url='https://cdn.discordapp.com/attachments/756823911768916019/883627319581888512/image0.jpg',
+                thumbnail_image_url='https://cdn.discordapp.com/attachments/884797105372287046/884797146627448922/619ab7f32f5268df.jpg',
                 title='指令選單',
                 text='點選下方按鈕以了解使用方式',
                 actions=[
