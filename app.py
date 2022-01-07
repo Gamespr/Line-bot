@@ -36,14 +36,9 @@ handler = WebhookHandler('25ab4833a4b0be3cddc433b35d4291b7')
 def home():
     return render_template("index.html")
 
-@app.route("/arduino_humid", methods=['GET'])
+@app.route("/arduino_dect", methods=['GET'])
 def humid():
-    line_bot_api.push_message('U443cbb5edf2e94e8ba23a767cf41f260', TextMessage(text='偵測到冰箱濕度異常，請確保濕度正常以適合保存食品!'))
-    return 'success!'
-
-@app.route("/arduino_tmp", methods=['GET'])
-def tmp():
-    line_bot_api.push_message('U443cbb5edf2e94e8ba23a767cf41f260', TextMessage(text='偵測到冰箱溫度異常，請確保溫度正常以適合保存食品!'))
+    line_bot_api.push_message('U443cbb5edf2e94e8ba23a767cf41f260', TextMessage(text='偵測到冰箱溫濕度異常，請確保溫濕度正常以適合保存食品!'))
     return 'success!'
 
 @app.route("/arduino_test", methods=['GET'])
