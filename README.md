@@ -1,2 +1,2 @@
 # Line-bot
-利用Python撰寫Line Bot以及使用Flask架構跟串接sensor的主動推播的功能，並且連接MongoDB記錄使用者所輸入的資訊
+利用python撰寫line bot程式，在這當中有使用到mongodb去管理使用者的食品資訊，並且利用主動推播提醒使用者到期的資訊以及使用Flask架構串接sensor到line bot去實現主動提醒使用者食品腐壞狀況的推播功能。
